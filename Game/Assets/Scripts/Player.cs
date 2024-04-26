@@ -48,4 +48,8 @@ public class Player : MonoBehaviour
         if (colllision.gameObject.tag == "Ground")
             grounded = true;
     }
+    void Start()
+    {
+        
+    }
 }
