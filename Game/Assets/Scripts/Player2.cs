@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player2 : MonoBehaviour
 {
     [SerializeField] private float speed;
     private Rigidbody2D body;
@@ -20,10 +20,10 @@ public class Player : MonoBehaviour
     private void Update()
     {
         // двигается по гирозонтали
-        var horizontalInput = Input.GetAxis("Horizontal");
+        var horizontalInput = Input.GetAxis("Horizontal2");
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-        // прыгает, если зажат пробел
-        if (Input.GetKey(KeyCode.Space) && grounded)
+        // прыгает, если зажат W
+        if (Input.GetKey(KeyCode.UpArrow) && grounded)
             Jump();
         
 
@@ -41,12 +41,13 @@ public class Player : MonoBehaviour
     private void Jump()
     {
         body.velocity = new Vector2(body.velocity.x, speed);
+        anim.SetTrigger("jump");
         grounded = false;
     }
 
     private void OnCollisionEnter2D(Collision2D colllision)
     {
-        if (colllision.gameObject.tag == "Ground")
+        if (colllision.gameObject.CompareTag("Ground"))
             grounded = true;
     }
     void Start()
