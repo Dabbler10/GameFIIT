@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -28,10 +29,10 @@ public class Player : MonoBehaviour
 
         // если двигается вправо, лицом поворачивается вправо
         if (horizontalInput > 0.01f)
-            transform.localScale = Vector2.one;
+            transform.localScale = new Vector2(Math.Abs(transform.localScale.x), transform.localScale.y); 
         // если двигается влево, лицом поворачивается влево
         if (horizontalInput < -0.01f)
-            transform.localScale = new Vector2(-1, 1); 
+            transform.localScale = new Vector2(-Math.Abs(transform.localScale.x), transform.localScale.y); 
         
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", grounded);
