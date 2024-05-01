@@ -8,15 +8,18 @@ public class Player2 : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float offset;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask wallLayer;
     private Rigidbody2D body;
     private Animator anim;
-    private bool grounded;
+    private BoxCollider2D boxCollider;
     private Camera camera;
 
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        boxCollider = GetComponent<BoxCollider2D>();
         camera = Camera.main;
     }
 
@@ -24,17 +27,17 @@ public class Player2 : MonoBehaviour
     {
         var horizontalInput = Input.GetAxis("Horizontal2");
         var localScale = transform.localScale;
-        var min = camera.ViewportToWorldPoint(new Vector3(0, 0, camera.nearClipPlane));
-        var max = camera.ViewportToWorldPoint(new Vector3(1f, 1f, camera.nearClipPlane));
+        var minCamBorder = camera.ViewportToWorldPoint(new Vector3(0, 0, camera.nearClipPlane));
+        var maxCamBorder = camera.ViewportToWorldPoint(new Vector3(1f, 1f, camera.nearClipPlane));
         
         // прыгает, если зажат W
-        if (Input.GetKey(KeyCode.UpArrow) && grounded)
+        if (Input.GetKey(KeyCode.UpArrow) && IsGrounded())
             Jump();
         
         // если двигается вправо, лицом поворачивается вправо
         if (horizontalInput > 0.01f)
         {
-            if (max.x - transform.position.x <= offset)
+            if (maxCamBorder.x - transform.position.x <= offset)
                 horizontalInput = 0f;
             localScale = new Vector2(Math.Abs(localScale.x), localScale.y);
         }
@@ -42,7 +45,7 @@ public class Player2 : MonoBehaviour
         // если двигается влево, лицом поворачивается влево
         if (horizontalInput < -0.01f)
         {
-            if (transform.position.x - min.x <= offset)
+            if (transform.position.x - minCamBorder.x <= offset)
                 horizontalInput = 0f;
             localScale = new Vector2(-Math.Abs(localScale.x), localScale.y);
         }
@@ -51,23 +54,19 @@ public class Player2 : MonoBehaviour
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
         
         anim.SetBool("run", horizontalInput != 0);
-        anim.SetBool("grounded", grounded);
+        anim.SetBool("grounded", IsGrounded());
     }
 
     private void Jump()
     {
         body.velocity = new Vector2(body.velocity.x, speed);
         anim.SetTrigger("jump");
-        grounded = false;
     }
-
-    private void OnCollisionEnter2D(Collision2D colllision)
+    
+    private bool IsGrounded()
     {
-        if (colllision.gameObject.CompareTag("Ground"))
-            grounded = true;
-    }
-    void Start()
-    {
-        
+        var bounds = boxCollider.bounds;
+        var raycastHit = Physics2D.BoxCast(bounds.center, bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+        return raycastHit.collider != null;
     }
 }
