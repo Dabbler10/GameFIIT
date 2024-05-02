@@ -45,3 +45,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Players
+    uniqueID: 1389814503
+    locked: 0
+  - name: Ghosts
+    uniqueID: 1336361097
+    locked: 0

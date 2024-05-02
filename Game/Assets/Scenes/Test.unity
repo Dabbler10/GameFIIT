@@ -209,8 +209,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1389814503
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -2067806692, guid: d2528b300308c8040baa690c2a02dc02, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -258,6 +258,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 256
+  anotherPlayer: {fileID: 910009965}
 --- !u!95 &464592834
 Animator:
   serializedVersion: 5
@@ -1451,8 +1452,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damping: 1.5
   offsetY: 1
-  Player1: {fileID: 464592832}
-  Player2: {fileID: 910009967}
+  Player1: {fileID: 464592831}
+  Player2: {fileID: 910009965}
 --- !u!1 &875463537
 GameObject:
   m_ObjectHideFlags: 0
@@ -1515,7 +1516,8 @@ MonoBehaviour:
   speed: 3
   radius: 4
   playerDetectionRadius: 5
-  player: {fileID: 464592831}
+  player1: {fileID: 464592831}
+  player2: {fileID: 910009965}
 --- !u!95 &875463540
 Animator:
   serializedVersion: 5
@@ -1575,8 +1577,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1336361097
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1706067718, guid: a28d8e213e6ccdf4487a5e3e796f82a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1690,8 +1692,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1389814503
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 45468007, guid: 426788c5f176c4c40a517e4aef26c0d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1754,6 +1756,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   offset: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!61 &910009968
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23778,7 +23786,8 @@ MonoBehaviour:
   speed: 3
   radius: 4
   playerDetectionRadius: 5
-  player: {fileID: 464592831}
+  player1: {fileID: 464592831}
+  player2: {fileID: 910009965}
 --- !u!50 &2021512885
 Rigidbody2D:
   serializedVersion: 4
@@ -23865,8 +23874,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1336361097
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1706067718, guid: a28d8e213e6ccdf4487a5e3e796f82a9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
