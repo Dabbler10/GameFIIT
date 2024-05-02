@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - Player1
+  - Player2
+  - Ghost
   layers:
   - Default
   - TransparentFX
@@ -15,7 +18,7 @@ TagManager:
   - Player1
   - Player2
   - Ground
-  - 
+  - Ghost
   - 
   - 
   - 
