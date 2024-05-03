@@ -6,19 +6,13 @@ using UnityEngine.SceneManagement;
 public class GameState : MonoBehaviour
 {
     public static bool gameIsPaused;
-    [SerializeField]  GameObject pauseMenu;
+    [SerializeField] GameObject pauseMenu;
 
     void Start() => pauseMenu.SetActive(false);
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (gameIsPaused)
-                Resume();
-            else
-                Pause();
-        }
+        if (Input.GetKeyDown(KeyCode.Escape)) LoadMenu();
     }
 
     public void Resume()
@@ -37,7 +31,14 @@ public class GameState : MonoBehaviour
 
     public void LoadMenu()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Menu");
+        if (gameIsPaused)
+            Resume();
+        else
+            Pause();
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }
