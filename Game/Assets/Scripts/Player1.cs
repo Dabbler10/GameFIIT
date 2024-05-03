@@ -11,7 +11,7 @@ public class Player1 : MonoBehaviour
     [SerializeField] private float offset;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
-    private Transform anotherPlayer;
+    [SerializeField] Transform anotherPlayer;
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
@@ -23,7 +23,6 @@ public class Player1 : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
-        anotherPlayer = GetComponent<Player2>().transform;
         camera = Camera.main;
     }
 
@@ -74,7 +73,7 @@ public class Player1 : MonoBehaviour
     private void ChangeCameraSize()
     {
         if (Math.Abs(transform.position.y - anotherPlayer.position.y) > 5)
-            CameraController.changeCameraSizeEvent?.Invoke(10);
+            CameraController.changeCameraSizeEvent?.Invoke(9);
         else
             CameraController.changeCameraSizeEvent?.Invoke(7);
     }
