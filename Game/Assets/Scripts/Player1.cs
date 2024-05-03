@@ -11,7 +11,7 @@ public class Player1 : MonoBehaviour
     [SerializeField] private float offset;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
-    [SerializeField] private Transform anotherPlayer;
+    private Transform anotherPlayer;
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
@@ -23,6 +23,7 @@ public class Player1 : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
+        anotherPlayer = GetComponent<Player2>().transform;
         camera = Camera.main;
     }
 
