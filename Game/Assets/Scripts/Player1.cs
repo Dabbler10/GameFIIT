@@ -61,7 +61,7 @@ public class Player1 : MonoBehaviour
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", IsGrounded());
         
-        print(OnWall());
+        //print(OnWall());
     }
 
     private void Jump()
