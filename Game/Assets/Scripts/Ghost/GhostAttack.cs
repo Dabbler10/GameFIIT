@@ -9,14 +9,7 @@ public class GhostAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player1")
-        {
-            collision.GetComponent<Player1Health>().TakeDamage(damage);
-        }
-        
-        if (collision.tag == "Player2")
-        {
-            collision.GetComponent<Player2Health>().TakeDamage(damage);
-        }
+        if (collision.tag == "Player1" || collision.tag == "Player2")
+            collision.GetComponent<PlayerHealth>().TakeDamage(damage);
     }
 }

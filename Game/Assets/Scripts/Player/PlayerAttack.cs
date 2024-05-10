@@ -5,9 +5,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class Player1Attack : MonoBehaviour
+public class PlayerAttack : MonoBehaviour
 {
-    private Player1 playerMovement;
+    private Player playerMovement;
+    [SerializeField] private string attack;
 
     [Header("Attack Parameters")] [SerializeField]
     private float range = 2;
@@ -26,12 +27,14 @@ public class Player1Attack : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        playerMovement = GetComponent<Player1>();
+        playerMovement = GetComponent<Player>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (attack == "E" && Input.GetKeyDown(KeyCode.E))
+            Attack();
+        if (attack == "Shift" && Input.GetKeyDown(KeyCode.RightShift))
             Attack();
     }
 

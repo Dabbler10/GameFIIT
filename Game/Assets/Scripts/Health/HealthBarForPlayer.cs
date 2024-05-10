@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine;
 
-public class HealthBarForPlayer1 : MonoBehaviour
+public class HealthBarForPlayer : MonoBehaviour
 {
-    [SerializeField] private Player1Health playerHealth;
+    [SerializeField] private PlayerHealth playerHealth;
     [SerializeField] private UnityEngine.UI.Image totalHealthBar;
     [SerializeField] private UnityEngine.UI.Image currentHealthBar;
 

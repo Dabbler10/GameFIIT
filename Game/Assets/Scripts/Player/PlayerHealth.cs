@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Player2Health : MonoBehaviour
+public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float maxHealth = 10;
     public float currentHealth { get; private set; }
@@ -26,7 +26,7 @@ public class Player2Health : MonoBehaviour
     {
         if (!dead)
         {
-            GetComponent<Player2>().enabled = false;
+            GetComponent<Player>().enabled = false;
         }
     }
 }

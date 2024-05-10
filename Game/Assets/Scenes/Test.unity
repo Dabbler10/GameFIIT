@@ -468,6 +468,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   anotherPlayer: {fileID: 910009965}
+  input: Horizontal1
+  jump: W
 --- !u!95 &464592834
 Animator:
   serializedVersion: 5
@@ -2153,10 +2155,10 @@ GameObject:
   - component: {fileID: 910009964}
   - component: {fileID: 910009968}
   - component: {fileID: 910009962}
-  - component: {fileID: 910009967}
   - component: {fileID: 910009966}
   - component: {fileID: 910009970}
   - component: {fileID: 910009969}
+  - component: {fileID: 910009971}
   m_Layer: 7
   m_Name: player2
   m_TagString: Player2
@@ -2279,26 +2281,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &910009967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 910009960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df45644b4db853c4cb8f5be154579bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  offset: 1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!61 &910009968
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2370,6 +2352,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
+--- !u!114 &910009971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910009960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7036aed6d8dc9a64dbc74c28f814d331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  offset: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  anotherPlayer: {fileID: 464592831}
+  input: Horizontal2
+  jump: Arrow
 --- !u!1 &1188688910
 GameObject:
   m_ObjectHideFlags: 0
@@ -25279,6 +25284,8 @@ GameObject:
   - component: {fileID: 2061481866}
   - component: {fileID: 2061481865}
   - component: {fileID: 2061481864}
+  - component: {fileID: 2061481870}
+  - component: {fileID: 2061481869}
   m_Layer: 0
   m_Name: ghost2
   m_TagString: Untagged
@@ -25418,6 +25425,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2061481869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061481863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae6ea474b325734a8a4e3a664bf8c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 2
+  currentHealth: 0
+--- !u!114 &2061481870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061481863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 663d5ea023d6b354da42a85d34e5c6ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1 &2110496117
 GameObject:
   m_ObjectHideFlags: 0
