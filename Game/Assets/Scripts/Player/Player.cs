@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private Transform anotherPlayer;
-    [SerializeField] private string input;
+    [SerializeField] public string input;
     [SerializeField] private string jump;
     private Rigidbody2D body;
     private Animator anim;
