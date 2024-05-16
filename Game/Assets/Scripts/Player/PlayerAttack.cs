@@ -8,7 +8,6 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     private Player playerMovement;
-    [SerializeField] private string attack;
 
     [Header("Attack Parameters")] [SerializeField]
     private float range = 2;
@@ -32,9 +31,9 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (attack == "E" && Input.GetKeyDown(KeyCode.E))
+        if (playerMovement.attack == "E" && Input.GetKeyDown(KeyCode.E))
             Attack();
-        if (attack == "Shift" && Input.GetKeyDown(KeyCode.RightShift))
+        if (playerMovement.attack == "Shift" && Input.GetKeyDown(KeyCode.RightShift))
             Attack();
     }
 

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class FirstQuest : Quest
 {
-    private readonly float questDuration = 90f; // 180 seconds = 3 minutes
+    private readonly float questDuration = 30f; // 180 seconds = 3 minutes
     private float currentQestTime = 0f;
     private float questTime = 0f;
     public float delta = 15f;
@@ -36,5 +36,7 @@ public class FirstQuest : Quest
     private void SwitchControl()
     {
         (player1.input, player2.input) = (player2.input, player1.input);
+        (player1.jump, player2.jump) = (player2.jump, player1.jump);
+        (player1.attack, player2.attack) = (player2.attack, player1.attack);
     }
 }

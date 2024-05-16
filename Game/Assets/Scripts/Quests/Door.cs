@@ -32,7 +32,7 @@ public class Door : MonoBehaviour
         }
 
         // Проверяем, вошли ли оба игрока в комнату
-        if (IsBothPlayersInRoom())
+        if (IsBothPlayersInRoom() && !quest.IsActive && !quest.IsCompleted)
         {
             CloseDoor();
             quest.StartQuest();
