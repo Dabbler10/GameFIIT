@@ -23,6 +23,7 @@ public class GhostHealth : MonoBehaviour
 
     void Die()
     {
-        GetComponent<Ghost>().enabled = false;
+        //GetComponent<Ghost>().enabled = false;
+        Destroy(GetComponent<Ghost>());
     }
 }
