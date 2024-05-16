@@ -14,12 +14,8 @@ public class FirstQuest : Quest
 
     private void Update()
     {
-        if (!IsActive && currentQestTime == 0f)
-        {
-            IsActive = true;
-            StartQuest();
-        }
-        else
+        //Debug.Log(IsActive);
+        if (IsActive)
         {
             questTime += Time.deltaTime;
             currentQestTime += Time.deltaTime;
@@ -29,10 +25,9 @@ public class FirstQuest : Quest
                 SwitchControl();
                 questTime = 0f;
             }
-            
+
             if (currentQestTime >= questDuration)
             {
-                IsActive = false;
                 CompleteQuest();
             }
         }
@@ -42,5 +37,4 @@ public class FirstQuest : Quest
     {
         (player1.input, player2.input) = (player2.input, player1.input);
     }
-
 }

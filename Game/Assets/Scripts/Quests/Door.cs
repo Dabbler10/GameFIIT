@@ -21,7 +21,7 @@ public class Door : MonoBehaviour
     private void Update()
     {
         // Проверяем, завершен ли все предыдущий квест
-        if (!quest.Previous.IsActive)
+        if (quest.Previous == null || !quest.Previous.IsActive)
         {
             // Проверяем, находятся ли игроки рядом с дверью
             if (Vector3.Distance(player1.transform.position, transform.position) < openDistance ||
@@ -35,7 +35,7 @@ public class Door : MonoBehaviour
         if (IsBothPlayersInRoom())
         {
             CloseDoor();
-            StartQuest();
+            quest.StartQuest();
         }
     }
 
@@ -55,11 +55,6 @@ public class Door : MonoBehaviour
             // здесь должна быть анимация закрытия двери
             (isOpen, isClosed) = (false, true);
         }
-    }
-
-    private void StartQuest()
-    {
-        quest.StartQuest();
     }
 
     private bool IsBothPlayersInRoom()
