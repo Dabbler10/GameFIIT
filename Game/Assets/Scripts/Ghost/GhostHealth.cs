@@ -14,7 +14,8 @@ public class GhostHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+        //currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+        currentHealth -= damage;
         if (currentHealth <= 0)
         {
             Die();
@@ -24,6 +25,7 @@ public class GhostHealth : MonoBehaviour
     void Die()
     {
         //GetComponent<Ghost>().enabled = false;
+        Debug.Log("Ghost died!");
         Destroy(GetComponent<Ghost>());
     }
 }

@@ -10,7 +10,7 @@ public class PlayerAttack : MonoBehaviour
     private Player playerMovement;
 
     [Header("Attack Parameters")] [SerializeField]
-    private float range = 2;
+    private float range = 0.5f;
 
     [SerializeField] private int damage;
 
@@ -18,6 +18,8 @@ public class PlayerAttack : MonoBehaviour
     private float colliderDistance;
 
     [SerializeField] private BoxCollider2D boxCollider;
+    [SerializeField] Transform attackPoint;
+    public LayerMask enemyLayers;
 
 
     //References
@@ -41,14 +43,18 @@ public class PlayerAttack : MonoBehaviour
     private void Attack()
     {
         anim.SetTrigger("attack");
-        var hits = GetTargetsInSight();
-        if (hits.Count != 0)
+        var hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, range, enemyLayers);
+        foreach (var enemy in hitEnemies)
         {
-            foreach (var ghost in hits)
-            {
-                ghost.GetComponent<GhostHealth>().TakeDamage(damage);
-            }
+            enemy.GetComponent<GhostHealth>().TakeDamage(damage);
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (attackPoint == null)
+            return;
+        Gizmos.DrawWireSphere(attackPoint.position, range);
     }
 
     private List<GameObject> GetTargetsInSight()
