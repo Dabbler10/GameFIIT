@@ -56,6 +56,7 @@ public class GameState : MonoBehaviour
         var players = GameObject.FindGameObjectsWithTag("Player");
         var (player1, player2) = (players[0].GetComponent<Player>(), players[1].GetComponent<Player>());
         (player1.enabled, player2.enabled) = (false, false);
+        GameObject.FindGameObjectsWithTag("Note")[0].SetActive(false);
         //GameObject.FindWithTag("Player1").GetComponent<Player>().enabled = false;
         //GameObject.FindWithTag("Player2").GetComponent<Player>().enabled = false;
     }

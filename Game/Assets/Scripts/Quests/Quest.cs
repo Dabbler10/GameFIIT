@@ -10,12 +10,11 @@ public class Quest : MonoBehaviour
     public Quest Previous;
     internal Player player1;
     internal Player player2;
-    public string inputPlayer1;
-    private string inputPlayer2;
-    private string attackPlayer1;
-    private string attackPlayer2;
-    private string jumpPlayer1;
-    private string jumpPlayer2;
+    private string inputPlayer1, inputPlayer2;
+    private string attackPlayer1, attackPlayer2;
+    private string jumpPlayer1, jumpPlayer2;
+    public Note ImageNote;
+    public Sprite StartNoteImage;
 
     public virtual void StartQuest()
     {
@@ -25,6 +24,7 @@ public class Quest : MonoBehaviour
         (attackPlayer1, attackPlayer2) = (string.Copy(player1.attack), string.Copy(player2.attack));
         (jumpPlayer1, jumpPlayer2) = (string.Copy(player1.jump), string.Copy(player2.jump));
         IsActive = true;
+        ImageNote.Appear(StartNoteImage);
     }
 
     public virtual void CompleteQuest()
