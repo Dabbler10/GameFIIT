@@ -26,6 +26,8 @@ public class GhostHealth : MonoBehaviour
     {
         //GetComponent<Ghost>().enabled = false;
         Debug.Log("Ghost died!");
-        Destroy(GetComponent<Ghost>());
+        GetComponent<Ghost>().gameObject.SetActive(false);
+        Destroy(GetComponent<Ghost>()); // неверно находит объект??
+        
     }
 }

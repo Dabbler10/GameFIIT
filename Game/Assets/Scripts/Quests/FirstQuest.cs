@@ -46,6 +46,9 @@ public class FirstQuest : Quest
             ghosts.AddRange(spawner.SpawnObjects(prefab, transform.position + new Vector3(5,0,0)));
             // исправить потом центр спавна на что-то лоигичное относительно комнаты квеста
         }
+
+        ClearGhostList();
+
     }
 
     private void SwitchControl()
@@ -53,5 +56,14 @@ public class FirstQuest : Quest
         (player1.input, player2.input) = (player2.input, player1.input);
         (player1.jump, player2.jump) = (player2.jump, player1.jump);
         (player1.attack, player2.attack) = (player2.attack, player1.attack);
+    }
+
+    private void ClearGhostList()
+    {
+        for (var i = 0; i < ghosts.Count; i++)
+        {
+            if (!ghosts[i].activeSelf)
+                ghosts.RemoveAt(i);
+        }
     }
 }

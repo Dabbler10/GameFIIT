@@ -11,7 +11,15 @@ public class GhostSpawn: MonoBehaviour
         {
             var randomPosition = Random.insideUnitCircle * spawnRadius;
             var spawnPosition = centerOfSpawn + new Vector3(randomPosition.x,randomPosition.y,0);
-            yield return Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
+            var ghost = Instantiate(prefabToSpawn, spawnPosition, Quaternion.identity);
+            ghost.SetActive(true);
+            var players = GameObject.FindGameObjectsWithTag("Player");
+            if (players.Length == 2)
+            {
+                ghost.GetComponent<Ghost>().player1 = players[0].transform;
+                ghost.GetComponent<Ghost>().player2 = players[1].transform;
+            }
+            yield return ghost;
         }
     }
 }
