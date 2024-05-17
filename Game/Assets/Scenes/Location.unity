@@ -827,6 +827,8 @@ GameObject:
   - component: {fileID: 464592828}
   - component: {fileID: 464592832}
   - component: {fileID: 464592834}
+  - component: {fileID: 464592836}
+  - component: {fileID: 464592837}
   m_Layer: 6
   m_Name: player1
   m_TagString: Player
@@ -949,6 +951,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   anotherPlayer: {fileID: 910009965}
+  input: Horizontal1
+  jump: W
+  attack: E
 --- !u!95 &464592834
 Animator:
   serializedVersion: 5
@@ -1015,6 +1020,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3924584, y: 2.0343492}
   m_EdgeRadius: 0
+--- !u!114 &464592836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464592826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dfc9573e0e06964cb51ce4b4e9d1445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 1
+  damage: 1
+  colliderDistance: 0
+  boxCollider: {fileID: 0}
+  attackPoint: {fileID: 0}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 512
+--- !u!114 &464592837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 464592826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c7450749d6b484daa3a324dc128a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
 --- !u!1 &478468476
 GameObject:
   m_ObjectHideFlags: 0
@@ -2471,8 +2509,10 @@ GameObject:
   - component: {fileID: 910009964}
   - component: {fileID: 910009968}
   - component: {fileID: 910009962}
-  - component: {fileID: 910009967}
   - component: {fileID: 910009966}
+  - component: {fileID: 910009969}
+  - component: {fileID: 910009971}
+  - component: {fileID: 910009970}
   m_Layer: 7
   m_Name: player2
   m_TagString: Untagged
@@ -2595,26 +2635,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &910009967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 910009960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df45644b4db853c4cb8f5be154579bdd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  offset: 1
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!61 &910009968
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2660,6 +2680,63 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.3924584, y: 2.0343492}
   m_EdgeRadius: 0
+--- !u!114 &910009969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910009960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7036aed6d8dc9a64dbc74c28f814d331, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  offset: 1
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  anotherPlayer: {fileID: 464592831}
+  input: Horizontal2
+  jump: Arrow
+  attack: Shift
+--- !u!114 &910009970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910009960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03c7450749d6b484daa3a324dc128a14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+--- !u!114 &910009971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910009960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dfc9573e0e06964cb51ce4b4e9d1445, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 1
+  damage: 1
+  colliderDistance: 0
+  boxCollider: {fileID: 0}
+  attackPoint: {fileID: 0}
+  enemyLayers:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &933817981
 GameObject:
   m_ObjectHideFlags: 0
@@ -56484,6 +56561,8 @@ GameObject:
   - component: {fileID: 2021512886}
   - component: {fileID: 2021512885}
   - component: {fileID: 2021512884}
+  - component: {fileID: 2021512890}
+  - component: {fileID: 2021512889}
   m_Layer: 0
   m_Name: ghost1
   m_TagString: Untagged
@@ -56623,6 +56702,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1734891230}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2021512889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021512883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ae6ea474b325734a8a4e3a664bf8c01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 2
+  currentHealth: 0
+--- !u!114 &2021512890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021512883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 663d5ea023d6b354da42a85d34e5c6ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
 --- !u!1 &2044301756
 GameObject:
   m_ObjectHideFlags: 0
