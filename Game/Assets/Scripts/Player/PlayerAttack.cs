@@ -46,7 +46,7 @@ public class PlayerAttack : MonoBehaviour
         {
             var enemyHealth = enemy.GetComponent<GhostHealth>();
             enemyHealth.TakeDamage(damage);
-            enemyHealth.PushAway(enemy.transform.position, pushPower);
+            enemyHealth.PushAway(transform.position, pushPower);
         }
     }
 
