@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public Player player1;
-    public Player player2;
+    public PlayerMovement player1;
+    public PlayerMovement player2;
     public float openDistance = 0.03f; // Расстояние, на котором двери откроются
     private Quest quest;
 
@@ -15,7 +15,7 @@ public class Door : MonoBehaviour
     {
         quest = GetComponent<Quest>();
         var players = GameObject.FindGameObjectsWithTag("Player");
-        (player1, player2) = (players[0].GetComponent<Player>(), players[1].GetComponent<Player>());
+        (player1, player2) = (players[0].GetComponent<PlayerMovement>(), players[1].GetComponent<PlayerMovement>());
     }
 
     private void Update()
@@ -59,8 +59,8 @@ public class Door : MonoBehaviour
 
     private bool IsBothPlayersInRoom()
     {
-        Vector3 player1Position = player1.transform.position;
-        Vector3 player2Position = player2.transform.position;
+        var player1Position = player1.transform.position;
+        var player2Position = player2.transform.position;
         return transform.position.x < player1Position.x && transform.position.x < player2Position.x;
     }
 }

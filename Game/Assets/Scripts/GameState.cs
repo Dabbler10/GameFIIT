@@ -54,7 +54,7 @@ public class GameState : MonoBehaviour
         gameOver.SetActive(true);
         isGameOver = true;
         var players = GameObject.FindGameObjectsWithTag("Player");
-        var (player1, player2) = (players[0].GetComponent<Player>(), players[1].GetComponent<Player>());
+        var (player1, player2) = (players[0].GetComponent<PlayerMovement>(), players[1].GetComponent<PlayerMovement>());
         (player1.enabled, player2.enabled) = (false, false);
         var notes = GameObject.FindGameObjectsWithTag("Note");
         if (notes.Length > 0)

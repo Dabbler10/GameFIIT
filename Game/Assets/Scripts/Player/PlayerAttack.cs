@@ -7,12 +7,13 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    private Player playerMovement;
+    public PlayerMovement playerMovement;
 
     [Header("Attack Parameters")] [SerializeField]
     private float range = 0.5f;
 
     [SerializeField] private int damage;
+    [SerializeField] private float pushPower;
 
     [Header("Collider Parameters")] [SerializeField]
     private float colliderDistance;
@@ -28,14 +29,11 @@ public class PlayerAttack : MonoBehaviour
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        playerMovement = GetComponent<Player>();
     }
 
     private void Update()
     {
-        if (playerMovement.attack == "E" && Input.GetKeyDown(KeyCode.E))
-            Attack();
-        if (playerMovement.attack == "Shift" && Input.GetKeyDown(KeyCode.RightShift))
+        if (Input.GetButtonDown("Attack" + playerMovement.Number))
             Attack();
     }
 
@@ -46,7 +44,9 @@ public class PlayerAttack : MonoBehaviour
         var hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, range, enemyLayers);
         foreach (var enemy in hitEnemies)
         {
-            enemy.GetComponent<GhostHealth>().TakeDamage(damage);
+            var enemyHealth = enemy.GetComponent<GhostHealth>();
+            enemyHealth.TakeDamage(damage);
+            enemyHealth.PushAway(enemy.transform.position, pushPower);
         }
     }
 
@@ -55,24 +55,5 @@ public class PlayerAttack : MonoBehaviour
         if (attackPoint == null)
             return;
         Gizmos.DrawWireSphere(attackPoint.position, range);
-    }
-
-    private List<GameObject> GetTargetsInSight()
-    {
-        var targetsInSight = new List<GameObject>();
-
-        // Создаем луч из центра камеры в направлении, в котором направлен игрок
-        var hits = Physics.RaycastAll(transform.position, transform.forward, range, 9);
-
-        // Проходим по всем пересечениям луча
-        if (hits != null)
-        {
-            foreach (RaycastHit hit in hits)
-            {
-                targetsInSight.Add(hit.transform.gameObject);
-            }
-        }
-
-        return targetsInSight;
     }
 }

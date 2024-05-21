@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
-        anim.SetBool("run", false);
+        anim.SetFloat("Speed", 0f);
         StartCoroutine(HandleDeath());
     }
 

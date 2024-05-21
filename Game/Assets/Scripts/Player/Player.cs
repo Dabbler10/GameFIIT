@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform anotherPlayer;
     [SerializeField] public string input;
     [SerializeField] public string jump;
-    [SerializeField]public string attack;
+    [SerializeField] public string attack;
     private Rigidbody2D body;
     private Animator anim;
     private BoxCollider2D boxCollider;
@@ -64,8 +64,7 @@ public class Player : MonoBehaviour
 
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", IsGrounded());
-
-        //print(OnWall());
+        
     }
 
     private void Jump()

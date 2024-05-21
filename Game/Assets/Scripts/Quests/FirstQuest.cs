@@ -25,7 +25,7 @@ public class FirstQuest : Quest
 
     private void Update()
     {
-        //Debug.Log(IsActive);
+        Debug.Log(IsActive);
         if (!IsActive) return;
         questTime += Time.deltaTime;
         currentQestTime += Time.deltaTime;
@@ -53,9 +53,7 @@ public class FirstQuest : Quest
 
     private void SwitchControl()
     {
-        (player1.input, player2.input) = (player2.input, player1.input);
-        (player1.jump, player2.jump) = (player2.jump, player1.jump);
-        (player1.attack, player2.attack) = (player2.attack, player1.attack);
+        (player1.Number, player2.Number) = (player2.Number, player1.Number);
     }
 
     private void ClearGhostList()
