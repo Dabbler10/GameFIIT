@@ -59,8 +59,6 @@ public class Door : MonoBehaviour
 
     private bool IsBothPlayersInRoom()
     {
-        var player1Position = player1.transform.position;
-        var player2Position = player2.transform.position;
-        return transform.position.x < player1Position.x && transform.position.x < player2Position.x;
+        return GetComponent<OneWayCollider>().playersInRoom;
     }
 }

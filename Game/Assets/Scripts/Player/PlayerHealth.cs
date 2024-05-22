@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] private float maxHealth = 10;
+    [SerializeField] private float maxHealth = 14;
     private GameState gameState;
     public float currentHealth { get; private set; }
     private Animator anim;

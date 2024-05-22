@@ -12,11 +12,11 @@ public class HealthBarForPlayer : MonoBehaviour
 
     private void Start()
     {
-        totalHealthBar.fillAmount = playerHealth.currentHealth / 20;
+        totalHealthBar.fillAmount = (float)(playerHealth.currentHealth / 20);
     }
 
     private void Update()
     {
-        currentHealthBar.fillAmount = playerHealth.currentHealth / 20;
+        currentHealthBar.fillAmount = (float)(playerHealth.currentHealth / 20);
     }
 }
