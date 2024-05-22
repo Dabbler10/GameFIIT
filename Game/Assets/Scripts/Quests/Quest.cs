@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Quest : MonoBehaviour
+public abstract class Quest : MonoBehaviour
 {
     public bool IsActive { get; protected set; }
     public bool IsCompleted { get; protected set; }
@@ -11,8 +11,7 @@ public class Quest : MonoBehaviour
     internal PlayerMovement player1;
     internal PlayerMovement player2;
     private string numberPlayer1, numberPlayer2;
-    public Note ImageNote;
-    public Sprite StartNoteImage;
+    protected abstract int QuestNumber { get; }
 
     public virtual void StartQuest()
     {
@@ -20,7 +19,8 @@ public class Quest : MonoBehaviour
         (player1, player2) = (players[0].GetComponent<PlayerMovement>(), players[1].GetComponent<PlayerMovement>());
         (numberPlayer1, numberPlayer2) = (player1.Number, player2.Number);
         IsActive = true;
-        ImageNote.Appear(StartNoteImage);
+        FindObjectsOfType<Note>(true)[0].Appear(QuestNumber);
+            
     }
 
     public virtual void CompleteQuest()
@@ -28,5 +28,7 @@ public class Quest : MonoBehaviour
         IsActive = false;
         IsCompleted = true;
         (player1.Number, player2.Number) = (numberPlayer1, numberPlayer2);
+        // убрать из конца? Оставить только в начале квеста? Пока нет 2х квестов, будет так
+        FindObjectsOfType<Note>(true)[0].Appear(QuestNumber+1);
     }
 }

@@ -15,6 +15,8 @@ public class FirstQuest : Quest
     public GameObject prefab;
     private List<GameObject> ghosts;
     private int minGhostNumber = 3;
+    protected override int QuestNumber { get; } = 1;
+
     //[SerializeField] public Quest previousQuest;
     
     void Start()

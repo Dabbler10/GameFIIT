@@ -1,9 +1,11 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Note : MonoBehaviour
 {
     public Image Image;
+    public Sprite[] sprites;
     private readonly float noteDuration = 10f;
     private bool isAppearing = false;
     private float timer = 0f;
@@ -17,9 +19,9 @@ public class Note : MonoBehaviour
             Disappear();
     }
 
-    public void Appear(Sprite sprite)
+    public void Appear(int index)
     {
-        Image.sprite = sprite; // устанавливаем передаваемую из квеста картинку
+        Image.sprite = sprites[index]; // устанавливаем передаваемую из квеста картинку
         Image.gameObject.SetActive(true);
         isAppearing = true;
         timer = 0f;
