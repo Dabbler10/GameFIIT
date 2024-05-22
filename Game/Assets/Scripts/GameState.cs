@@ -63,4 +63,12 @@ public class GameState : MonoBehaviour
         //GameObject.FindWithTag("Player1").GetComponent<Player>().enabled = false;
         //GameObject.FindWithTag("Player2").GetComponent<Player>().enabled = false;
     }
+    
+    public void RestartCurrentScene()
+    {
+        // Получаем имя текущей сцены
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        // Перезапускаем сцену по имени
+        SceneManager.LoadScene(currentSceneName);
+    }
 }
