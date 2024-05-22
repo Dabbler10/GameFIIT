@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -7,6 +8,26 @@ public class PlayerHealth : MonoBehaviour
     private GameState gameState;
     public float currentHealth { get; private set; }
     private Animator anim;
+    private const float deltaTimeForTakingDamage = 1f;
+    private const float deltaTimeForRecovery = 5f;
+    private float timerTakinDamage;
+    private float timerRecovery;
+    
+    private void Update()
+    {
+        if (timerRecovery > deltaTimeForRecovery && currentHealth < maxHealth)
+        {
+            currentHealth += 1;
+            timerRecovery = 0f;
+        }
+
+        if (currentHealth < maxHealth)
+        {
+            timerTakinDamage += Time.deltaTime;
+            timerRecovery += Time.deltaTime;
+        }
+
+    }
 
     void Awake()
     {
@@ -17,7 +38,12 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+        if (timerTakinDamage > deltaTimeForTakingDamage || Math.Abs(currentHealth - maxHealth) < Math.E)
+        {
+            currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
+            timerTakinDamage = 0f;
+        }
+
         if (currentHealth <= 0)
             Die();
     }

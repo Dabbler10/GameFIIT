@@ -25,6 +25,7 @@ public class FirstQuest : Quest
 
     private void Update()
     {
+        Debug.Log(IsActive);
         if (!IsActive) return;
         questTime += Time.deltaTime;
         currentQestTime += Time.deltaTime;
