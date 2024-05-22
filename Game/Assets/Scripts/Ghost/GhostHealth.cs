@@ -29,7 +29,8 @@ public class GhostHealth : MonoBehaviour
     {
         if (rBody == null || pushPower == 0)
             return;
-
+        
+        Debug.Log("aboba");
         var pushDirection = (pushFrom - transform.position).normalized;
 
         // Толкаем объект в нужном направлении с силой pushPower
@@ -38,7 +39,6 @@ public class GhostHealth : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Ghost died!");
         GetComponent<Ghost>().gameObject.SetActive(false);
         Destroy(GetComponent<Ghost>()); // неверно находит объект??
         
