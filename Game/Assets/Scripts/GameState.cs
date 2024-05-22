@@ -11,6 +11,10 @@ public class GameState : MonoBehaviour
     [SerializeField] GameObject gameOver;
     private bool isGameOver = false;
 
+    void Awake()
+    {
+        FindObjectsOfType<Note>(true)[0].Appear(0);
+    }
     void Start()
     {
         pauseMenu.SetActive(false);
