@@ -11,7 +11,7 @@ public class Ghost : MonoBehaviour
     public float radius = 4f;
     private Vector3 centerPoint;
     private Vector3 direction;
-    private float epsilon = 0.1f;
+    private float epsilon = 0.5f;
     private bool flagToPlayer;
     private bool flagToCentralPoint;
     public float playerDetectionRadius = 2.5f; // Радиус обнаружения игрока
@@ -19,6 +19,7 @@ public class Ghost : MonoBehaviour
     public Transform player2;
     private Transform goalPlayer;
     private Animator anim;
+    private bool m_FacingRight = true;
 
     void Start()
     {
@@ -53,14 +54,6 @@ public class Ghost : MonoBehaviour
             anim.SetBool("attack", true);
     }
 
-    private void TurnToDirection()
-    {
-        if (direction.x < 0)
-            transform.localScale = new Vector2(-Math.Abs(transform.localScale.x), transform.localScale.y);
-        else
-            transform.localScale = new Vector2(Math.Abs(transform.localScale.x), transform.localScale.y);
-    }
-
     void Update()
     {
         transform.position += (Vector3)direction * (speed * Time.deltaTime);
@@ -89,7 +82,23 @@ public class Ghost : MonoBehaviour
             flagToCentralPoint = false;
             direction = (Random.insideUnitCircle * radius).normalized;
         }
-
-        TurnToDirection();
+        
+        if (direction.x > epsilon && !m_FacingRight)
+        {
+            Flip();
+        }
+			
+        else if (direction.x < -epsilon && m_FacingRight)
+        {
+            Flip();
+        }
+    }
+    
+    private void Flip()
+    {
+        m_FacingRight = !m_FacingRight;
+        var theScale = transform.localScale;
+        theScale.x *= -1;
+        transform.localScale = theScale;
     }
 }

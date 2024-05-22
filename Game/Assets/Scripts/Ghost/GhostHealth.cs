@@ -17,7 +17,6 @@ public class GhostHealth : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        //currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
         currentHealth -= damage;
         if (currentHealth <= 0)
         {
@@ -30,11 +29,10 @@ public class GhostHealth : MonoBehaviour
         if (rBody == null || pushPower == 0)
             return;
         
-        Debug.Log("aboba");
         var pushDirection = (pushFrom - transform.position).normalized;
 
         // Толкаем объект в нужном направлении с силой pushPower
-        rBody.AddForce(pushDirection * pushPower);
+        rBody.AddForce(-pushDirection * pushPower, ForceMode2D.Impulse);
     }
 
     void Die()
