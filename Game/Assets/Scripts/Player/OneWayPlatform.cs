@@ -20,10 +20,7 @@ public class OneWayPlatform : MonoBehaviour
     {
         if (Input.GetButtonDown("Crouch" + number))
             if (currentPlatform != null)
-            {
-                Debug.Log("aboba");
                 StartCoroutine(DisablecCollusion());
-            }
     }
 
     private void OnCollisionEnter2D(Collision2D other)
