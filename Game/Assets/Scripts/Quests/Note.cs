@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class Note : MonoBehaviour
 {
     public Image Image;
+    public Canvas Canvas;
     public Sprite[] sprites;
     private readonly float noteDuration = 10f;
     private bool isAppearing = false;
@@ -14,30 +15,43 @@ public class Note : MonoBehaviour
 
     void Update()
     {
-        if (!isAppearing) return;
-        timer += Time.deltaTime;
-        if (timer > noteDuration)
+        if (isAppearing)
+            timer += Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.Return) || (isAppearing && timer > noteDuration))
             Disappear();
     }
 
     public void Appear(int index)
     {
         if (bigIndexes.Contains(index))
-            MakeImageBig();
-            
-        Image.sprite = sprites[index]; // устанавливаем передаваемую из квеста картинку
+            AppearBigImage();
+        else
+            AppearSmallImage();
+        
+        Image.sprite = sprites[index];
         Image.gameObject.SetActive(true);
+    }
+
+    private void AppearBigImage()
+    {
+        MakeImageBig();
+        isAppearing = false;
+        Canvas.GetComponent<GameState>().Pause();
+    }
+
+    private void AppearSmallImage()
+    {
+        MakeImageSmall();
         isAppearing = true;
         timer = 0f;
     }
     
     public void Disappear()
     {
+        Canvas.GetComponent<GameState>().Resume();
         Image.gameObject.SetActive(false);
         isAppearing = false;
         timer = 0f;
-        Image.transform.localScale = new Vector3(1, 1, 1);
-        MakeImageSmall();
     }
 
     private void MakeImageBig()
@@ -46,6 +60,7 @@ public class Note : MonoBehaviour
         Image.rectTransform.anchoredPosition = new Vector2(0, 0);
         Color currentColor = Image.color;
         Image.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1);
+        
     }
 
     private void MakeImageSmall()

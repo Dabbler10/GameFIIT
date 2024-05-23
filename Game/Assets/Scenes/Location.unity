@@ -8232,10 +8232,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Image: {fileID: 955304882}
+  Canvas: {fileID: 1129287225}
   sprites:
   - {fileID: 21300000, guid: 47c67af82863af64aaff08261c72e2a2, type: 3}
   - {fileID: 21300000, guid: 74f6487d9a3f8b2468dbe46b32104b2b, type: 3}
-  - {fileID: 21300000, guid: 79503ec8e6d6dc4458e6a33a1ce150fd, type: 3}
+  - {fileID: 21300000, guid: b3c6a7fc00b299041ab67f85bcd2f8e5, type: 3}
 --- !u!114 &955304882
 MonoBehaviour:
   m_ObjectHideFlags: 0
