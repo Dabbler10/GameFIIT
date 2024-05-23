@@ -28,7 +28,7 @@ public class Door : MonoBehaviour
         if (quest.Previous == null || !quest.Previous.IsActive)
         {
             // Проверяем, находятся ли игроки рядом с дверью
-            Debug.Log(Vector3.Distance(player1.transform.position, transform.position) < openDistance);
+            // Debug.Log(Vector3.Distance(player1.transform.position, transform.position) < openDistance);
             if (Vector3.Distance(player1.transform.position, transform.position) < openDistance ||
                 Vector3.Distance(player2.transform.position, transform.position) < openDistance)
             {

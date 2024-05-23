@@ -131,7 +131,7 @@ public class CharacterController2D : MonoBehaviour
 	
 	private void ChangeCameraSize()
 	{
-		if (Mathf.Abs(transform.position.y - anotherPlayer.position.y) > 5)
+		if (Mathf.Abs(transform.position.y - anotherPlayer.position.y) > 7)
 			CameraController.changeCameraSizeEvent?.Invoke(10);
 		else
 			CameraController.changeCameraSizeEvent?.Invoke(7);
