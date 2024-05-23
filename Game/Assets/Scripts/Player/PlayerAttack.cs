@@ -22,6 +22,8 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] Transform attackPoint;
     public LayerMask enemyLayers;
 
+    [SerializeField] private AudioClip soundAttack;
+
 
     //References
     private Animator anim;
@@ -40,6 +42,7 @@ public class PlayerAttack : MonoBehaviour
     // если зажата клавиша E, игрок атакует
     private void Attack()
     {
+        SoundManager.instance.PlaySoundOnce(soundAttack);
         anim.SetTrigger("attack");
         var hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, range, enemyLayers);
         foreach (var enemy in hitEnemies)
