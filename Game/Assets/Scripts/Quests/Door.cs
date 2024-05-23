@@ -5,7 +5,7 @@ public class Door : MonoBehaviour
 {
     public PlayerMovement player1;
     public PlayerMovement player2;
-    public float openDistance = 0.03f; // Расстояние, на котором двери откроются
+    public float openDistance = 5f; // Расстояние, на котором двери откроются
     private Quest quest;
     private Animator anim;
     private BoxCollider2D collider;
@@ -24,17 +24,24 @@ public class Door : MonoBehaviour
 
     private void Update()
     {
-        if (player1.transform.position.x > transform.position.x + 5 && player2.transform.position.x > transform.position.x + 5  && !quest.IsActive && !quest.IsCompleted)
+        // Проверяем, завершен ли все предыдущий квест
+        if (quest.Previous == null || !quest.Previous.IsActive)
+        {
+            // Проверяем, находятся ли игроки рядом с дверью
+            Debug.Log(Vector3.Distance(player1.transform.position, transform.position) < openDistance);
+            if (Vector3.Distance(player1.transform.position, transform.position) < openDistance ||
+                Vector3.Distance(player2.transform.position, transform.position) < openDistance)
+            {
+                OpenDoor();
+            }
+        }
+
+        // Проверяем, вошли ли оба игрока в комнату
+        if (IsBothPlayersInRoom() && !isClosed && !quest.IsCompleted)
         {
             CloseDoor();
             quest.StartQuest();
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (isClosed  && !quest.IsActive && quest.Previous == null || !quest.Previous.IsActive)
-            OpenDoor();
     }
 
     private void OpenDoor()
@@ -50,4 +57,6 @@ public class Door : MonoBehaviour
         anim.SetBool("IsOpened", false);
         collider.isTrigger = false;
     }
+
+    private bool IsBothPlayersInRoom() => GetComponent<DoorCollider>().playersInRoom;
 }
