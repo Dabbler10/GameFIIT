@@ -9,7 +9,8 @@ public class Note : MonoBehaviour
     private readonly float noteDuration = 10f;
     private bool isAppearing = false;
     private float timer = 0f;
-    private Texture texture;
+    private List<int> bigIndexes = new(){2};
+    
 
     void Update()
     {
@@ -21,6 +22,9 @@ public class Note : MonoBehaviour
 
     public void Appear(int index)
     {
+        if (bigIndexes.Contains(index))
+            MakeImageBig();
+            
         Image.sprite = sprites[index]; // устанавливаем передаваемую из квеста картинку
         Image.gameObject.SetActive(true);
         isAppearing = true;
@@ -32,5 +36,23 @@ public class Note : MonoBehaviour
         Image.gameObject.SetActive(false);
         isAppearing = false;
         timer = 0f;
+        Image.transform.localScale = new Vector3(1, 1, 1);
+        MakeImageSmall();
+    }
+
+    private void MakeImageBig()
+    {
+        Image.transform.localScale = new Vector3(3, 3, 0);
+        Image.rectTransform.anchoredPosition = new Vector2(0, 0);
+        Color currentColor = Image.color;
+        Image.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1);
+    }
+
+    private void MakeImageSmall()
+    {
+        Image.transform.localScale = new Vector3(1, 1, 1);
+        Image.rectTransform.anchoredPosition = new Vector2(285,-180);
+        Color currentColor = Image.color;
+        Image.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0.7f);
     }
 }

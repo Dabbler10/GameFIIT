@@ -74,5 +74,6 @@ public class GameState : MonoBehaviour
         string currentSceneName = SceneManager.GetActiveScene().name;
         // Перезапускаем сцену по имени
         SceneManager.LoadScene(currentSceneName);
+        Time.timeScale = 1f;
     }
 }
