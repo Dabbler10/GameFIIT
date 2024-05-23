@@ -13,6 +13,8 @@ public class Door : MonoBehaviour
     private bool isOpen = false;
     private bool isClosed = true;
 
+    [SerializeField] private AudioClip soundOfDoor;
+
     private void Start()
     {
         quest = GetComponent<Quest>();
@@ -46,7 +48,10 @@ public class Door : MonoBehaviour
     }
 
     private void OpenDoor()
-    {
+    { 
+        if (!anim.GetBool("IsOpened"))// не помогло
+            SoundManager.instance.PlaySoundOnce2(soundOfDoor);
+        
         (isOpen, isClosed) = (true, false);
         anim.SetBool("IsOpened", true);
         collider.isTrigger = true;
@@ -54,6 +59,9 @@ public class Door : MonoBehaviour
 
     private void CloseDoor()
     {
+        if (anim.GetBool("IsOpened")) // не помогло
+            SoundManager.instance.PlaySoundOnce2(soundOfDoor);
+        
         (isOpen, isClosed) = (false, true);
         anim.SetBool("IsOpened", false);
         collider.isTrigger = false;
