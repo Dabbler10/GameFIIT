@@ -27,6 +27,7 @@ public class GameState : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha1) && gameIsPaused) Resume();
         else if (Input.GetKeyDown(KeyCode.Alpha2) && gameIsPaused) RestartCurrentScene();
         else if (Input.GetKeyDown(KeyCode.Alpha3) && gameIsPaused) ExitGame();
+        else if (Input.GetKeyDown(KeyCode.R) && isGameOver) RestartCurrentScene();
     }
 
     public void Resume()
