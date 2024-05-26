@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 966b182c2e5d0874abac83097c8965dd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - haySound: {fileID: 8300000, guid: 6b436c817f35f7f42b6103b36364eba9, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

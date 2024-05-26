@@ -31,8 +31,8 @@ public class Door : MonoBehaviour
         {
             // Проверяем, находятся ли игроки рядом с дверью
             // Debug.Log(Vector3.Distance(player1.transform.position, transform.position) < openDistance);
-            if (Vector3.Distance(player1.transform.position, transform.position) < openDistance ||
-                Vector3.Distance(player2.transform.position, transform.position) < openDistance)
+            if ((Vector3.Distance(player1.transform.position, transform.position) < openDistance ||
+                Vector3.Distance(player2.transform.position, transform.position) < openDistance) && !quest.IsActive && !quest.IsCompleted)
             {
                 OpenDoor();
             }
@@ -49,9 +49,8 @@ public class Door : MonoBehaviour
 
     private void OpenDoor()
     { 
-        if (!anim.GetBool("IsOpened"))// не помогло
-            SoundManager.instance.PlaySoundOnce2(soundOfDoor);
-        
+        Debug.Log(67);
+        SoundManager.instance.PlaySound(soundOfDoor);
         (isOpen, isClosed) = (true, false);
         anim.SetBool("IsOpened", true);
         collider.isTrigger = true;
@@ -59,9 +58,7 @@ public class Door : MonoBehaviour
 
     private void CloseDoor()
     {
-        if (anim.GetBool("IsOpened")) // не помогло
-            SoundManager.instance.PlaySoundOnce2(soundOfDoor);
-        
+        SoundManager.instance.PlaySound(soundOfDoor);
         (isOpen, isClosed) = (false, true);
         anim.SetBool("IsOpened", false);
         collider.isTrigger = false;

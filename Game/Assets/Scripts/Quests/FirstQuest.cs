@@ -14,7 +14,7 @@ public class FirstQuest : Quest
     private GhostSpawn spawner;
     public GameObject prefab;
     private List<GameObject> ghosts;
-    private int minGhostNumber = 3;
+    private int minGhostNumber;
     protected override int QuestNumber { get; } = 1;
 
     //[SerializeField] public Quest previousQuest;
@@ -23,6 +23,7 @@ public class FirstQuest : Quest
     {
         spawner = new();
         ghosts = GameObject.FindGameObjectsWithTag("Ghost").ToList();
+        minGhostNumber = ghosts.Count;
     }
 
     private void Update()

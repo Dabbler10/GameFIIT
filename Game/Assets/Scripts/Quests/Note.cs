@@ -11,6 +11,7 @@ public class Note : MonoBehaviour
     private bool isAppearing = false;
     private float timer = 0f;
     private List<int> bigIndexes = new(){2};
+    [SerializeField] private AudioClip noteSound;
     
 
     void Update()
@@ -34,6 +35,7 @@ public class Note : MonoBehaviour
 
     private void AppearBigImage()
     {
+        SoundManager.instance.PlaySound(noteSound);
         MakeImageBig();
         isAppearing = false;
         Canvas.GetComponent<GameState>().Pause();

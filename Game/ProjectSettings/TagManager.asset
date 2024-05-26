@@ -12,6 +12,7 @@ TagManager:
   - Platform
   - StatueHead
   - StatueArm
+  - Music
   layers:
   - Default
   - TransparentFX

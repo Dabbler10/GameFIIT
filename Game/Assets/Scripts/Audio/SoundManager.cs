@@ -20,7 +20,7 @@ public class SoundManager : MonoBehaviour
     public void PlaySoundOnce2(AudioClip clip)
     {
         PlaySound(clip);
-        Invoke("StopSound", 1f);
+        Invoke("StopSound", 0.3f);
     }
     
     public void PlaySound(AudioClip clip)

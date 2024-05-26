@@ -11,6 +11,8 @@ public class StatueHold : MonoBehaviour
     public float distance;
     public Transform holdPoint;
     public float throwPower;
+    [SerializeField] private AudioClip assembleStatueSound;
+    [SerializeField] private AudioClip collectStatueSound;
     
 
     // Update is called once per frame
@@ -20,6 +22,7 @@ public class StatueHold : MonoBehaviour
         {
             if (!hold)
             {
+                SoundManager.instance.PlaySound(collectStatueSound);
                 Physics2D.queriesStartInColliders = false;
                 hit = Physics2D.Raycast(transform.position - new Vector3(0, 2, 0), Vector2.right * transform.localScale.x, distance);
                 if (hit.collider != null && (hit.collider.gameObject.CompareTag("StatueHead") || hit.collider.gameObject.CompareTag("StatueArm")) && hit.collider.gameObject.GetComponent<BoxCollider2D>().isTrigger == false)
@@ -31,6 +34,7 @@ public class StatueHold : MonoBehaviour
             }
             else
             {
+                SoundManager.instance.PlaySound(assembleStatueSound);
                 hold = false;
                 holdStatuePart.GetComponent<BoxCollider2D>().isTrigger = false;
                 holdStatuePart.GetComponent<Rigidbody2D>().velocity =

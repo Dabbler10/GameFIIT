@@ -9,6 +9,7 @@ public class GameState : MonoBehaviour
     public static bool gameIsPaused;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject gameOver;
+    [SerializeField] AudioClip gameOverSound;
     private bool isGameOver = false;
 
     void Awake()
@@ -59,6 +60,8 @@ public class GameState : MonoBehaviour
 
     public void GameOver()
     {
+        SoundManager.instance.StopSound();
+        SoundManager.instance.PlaySound(gameOverSound);
         gameOver.SetActive(true);
         isGameOver = true;
         var players = GameObject.FindGameObjectsWithTag("Player");
@@ -67,6 +70,7 @@ public class GameState : MonoBehaviour
         var notes = GameObject.FindGameObjectsWithTag("Note");
         if (notes.Length > 0)
             notes[0].SetActive(false);
+        Time.timeScale = 0f;
         
         //GameObject.FindWithTag("Player1").GetComponent<Player>().enabled = false;
         //GameObject.FindWithTag("Player2").GetComponent<Player>().enabled = false;
@@ -74,9 +78,7 @@ public class GameState : MonoBehaviour
     
     public void RestartCurrentScene()
     {
-        // Получаем имя текущей сцены
         string currentSceneName = SceneManager.GetActiveScene().name;
-        // Перезапускаем сцену по имени
         SceneManager.LoadScene(currentSceneName);
         Time.timeScale = 1f;
     }
