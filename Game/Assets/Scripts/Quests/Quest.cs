@@ -19,7 +19,7 @@ public abstract class Quest : MonoBehaviour
         (player1, player2) = (players[0].GetComponent<PlayerMovement>(), players[1].GetComponent<PlayerMovement>());
         (numberPlayer1, numberPlayer2) = (player1.Number, player2.Number);
         IsActive = true;
-        FindObjectsOfType<Note>(true)[0].Appear(QuestNumber);
+        FindObjectsOfType<Note>(true)[0].Appear(QuestNumber, 1);
             
     }
 
@@ -29,6 +29,6 @@ public abstract class Quest : MonoBehaviour
         IsCompleted = true;
         (player1.Number, player2.Number) = (numberPlayer1, numberPlayer2);
         // убрать из конца? Оставить только в начале квеста? Пока нет 2х квестов, будет так
-        FindObjectsOfType<Note>(true)[0].Appear(QuestNumber+1);
+        FindObjectsOfType<Note>(true)[0].Appear(QuestNumber, 2);
     }
 }

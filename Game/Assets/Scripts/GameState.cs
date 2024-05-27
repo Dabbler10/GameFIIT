@@ -14,7 +14,7 @@ public class GameState : MonoBehaviour
 
     void Awake()
     {
-        FindObjectsOfType<Note>(true)[0].Appear(0);
+        FindObjectsOfType<Note>(true)[0].Appear(0, 1);
     }
     void Start()
     {
@@ -25,10 +25,9 @@ public class GameState : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !isGameOver) LoadMenu();
-        else if (Input.GetKeyDown(KeyCode.Alpha1) && gameIsPaused) Resume();
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && gameIsPaused) RestartCurrentScene();
-        else if (Input.GetKeyDown(KeyCode.Alpha3) && gameIsPaused) ExitGame();
-        else if (Input.GetKeyDown(KeyCode.R) && isGameOver) RestartCurrentScene();
+        else if (Input.GetKeyDown(KeyCode.Alpha1) && gameIsPaused) RestartCurrentScene();
+        else if (Input.GetKeyDown(KeyCode.Alpha2) && gameIsPaused) ExitGame();
+        else if (Input.GetKeyDown(KeyCode.R) && (isGameOver || gameIsPaused)) RestartCurrentScene();
     }
 
     public void Resume()

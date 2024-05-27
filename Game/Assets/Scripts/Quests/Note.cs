@@ -1,16 +1,26 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Note : MonoBehaviour
 {
+    
+    [Serializable]
+    public struct SpritePair
+    {
+        public Sprite sprite1;
+        public Sprite sprite2;
+    }
+
+    [SerializeField] public SpritePair[] sprites;
+    
+    
     public Image Image;
     public Canvas Canvas;
-    public Sprite[] sprites;
     private readonly float noteDuration = 10f;
     private bool isAppearing = false;
     private float timer = 0f;
-    private List<int> bigIndexes = new(){2};
     [SerializeField] private AudioClip noteSound;
     
 
@@ -22,14 +32,21 @@ public class Note : MonoBehaviour
             Disappear();
     }
 
-    public void Appear(int index)
+    public void Appear(int index, int item)
     {
-        if (bigIndexes.Contains(index))
-            AppearBigImage();
-        else
+        if (item == 1)
+        {
             AppearSmallImage();
+            Image.sprite = sprites[index].sprite1;
+        }
+           
+        else
+        {
+            AppearBigImage();
+            Image.sprite = sprites[index].sprite2;
+        }
+            
         
-        Image.sprite = sprites[index];
         Image.gameObject.SetActive(true);
     }
 
