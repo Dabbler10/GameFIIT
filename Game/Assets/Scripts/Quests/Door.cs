@@ -49,7 +49,6 @@ public class Door : MonoBehaviour
 
     private void OpenDoor()
     { 
-        Debug.Log(67);
         SoundManager.instance.PlaySound(soundOfDoor);
         (isOpen, isClosed) = (true, false);
         anim.SetBool("IsOpened", true);
