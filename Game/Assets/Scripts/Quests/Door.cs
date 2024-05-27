@@ -49,7 +49,8 @@ public class Door : MonoBehaviour
 
     private void OpenDoor()
     { 
-        SoundManager.instance.PlaySound(soundOfDoor);
+        if (isClosed)
+            SoundManager.instance.PlaySound(soundOfDoor);
         (isOpen, isClosed) = (true, false);
         anim.SetBool("IsOpened", true);
         collider.isTrigger = true;
