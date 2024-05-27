@@ -25,8 +25,8 @@ public class GameState : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && !isGameOver) LoadMenu();
-        else if (Input.GetKeyDown(KeyCode.Alpha1) && gameIsPaused) RestartCurrentScene();
-        else if (Input.GetKeyDown(KeyCode.Alpha2) && gameIsPaused) ExitGame();
+        else if (Input.GetKeyDown(KeyCode.Escape) && gameIsPaused) RestartCurrentScene();
+        else if (Input.GetKeyDown(KeyCode.X) && (isGameOver || gameIsPaused)) ExitGame();
         else if (Input.GetKeyDown(KeyCode.R) && (isGameOver || gameIsPaused)) RestartCurrentScene();
     }
 

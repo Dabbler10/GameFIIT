@@ -152,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   radius: 4
-  playerDetectionRadius: 2.5
+  playerDetectionRadius: 4
   player1: {fileID: 0}
   player2: {fileID: 0}
 --- !u!114 &7133228413586533365

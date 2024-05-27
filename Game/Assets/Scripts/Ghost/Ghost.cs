@@ -14,7 +14,7 @@ public class Ghost : MonoBehaviour
     private float epsilon = 0.5f;
     private bool flagToPlayer;
     private bool flagToCentralPoint;
-    public float playerDetectionRadius = 2.5f; // Радиус обнаружения игрока
+    public float playerDetectionRadius = 3.5f; // Радиус обнаружения игрока
     public Transform player1;
     public Transform player2;
     private Transform goalPlayer;

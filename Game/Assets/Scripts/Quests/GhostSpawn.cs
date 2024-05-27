@@ -2,7 +2,7 @@
 using UnityEngine;
 public class GhostSpawn: MonoBehaviour
 {
-    private float spawnRadius = 5f;
+    private float spawnRadius = 7f;
     private int maxSpawnNumber = 6;
     public IEnumerable<GameObject> SpawnObjects(GameObject prefabToSpawn, Vector3 centerOfSpawn)
     {

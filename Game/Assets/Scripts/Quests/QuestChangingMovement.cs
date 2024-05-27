@@ -15,6 +15,7 @@ public class QuestChangingMovement : Quest
     public GameObject prefab;
     private List<GameObject> ghosts;
     private int minGhostNumber;
+    [SerializeField] private Transform ghostSpawnPoint;
     
 
     //[SerializeField] public Quest previousQuest;
@@ -45,8 +46,7 @@ public class QuestChangingMovement : Quest
 
         if (ghosts.Count < minGhostNumber)
         {
-            ghosts.AddRange(spawner.SpawnObjects(prefab, transform.position + new Vector3(5,0,0)));
-            // исправить потом центр спавна на что-то лоигичное относительно комнаты квеста
+            ghosts.AddRange(spawner.SpawnObjects(prefab, ghostSpawnPoint.position));
         }
 
         ClearGhostList();
