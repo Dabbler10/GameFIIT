@@ -5,7 +5,7 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class FirstQuest : Quest
+public class QuestChangingMovement : Quest
 {
     private readonly float questDuration = 30f; // 180 seconds = 3 minutes
     private float currentQestTime = 0f;
@@ -15,7 +15,7 @@ public class FirstQuest : Quest
     public GameObject prefab;
     private List<GameObject> ghosts;
     private int minGhostNumber;
-    protected override int QuestNumber { get; } = 1;
+    
 
     //[SerializeField] public Quest previousQuest;
     

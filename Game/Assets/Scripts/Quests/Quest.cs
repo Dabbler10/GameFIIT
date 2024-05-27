@@ -7,11 +7,11 @@ public abstract class Quest : MonoBehaviour
 {
     public bool IsActive { get; protected set; }
     public bool IsCompleted { get; protected set; }
-    public Quest Previous;
+    [SerializeField] public Quest Previous;
     internal PlayerMovement player1;
     internal PlayerMovement player2;
     private string numberPlayer1, numberPlayer2;
-    protected abstract int QuestNumber { get; }
+    [SerializeField] public int QuestNumber;
 
     public virtual void StartQuest()
     {

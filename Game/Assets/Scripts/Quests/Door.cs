@@ -27,10 +27,8 @@ public class Door : MonoBehaviour
     private void Update()
     {
         // Проверяем, завершен ли все предыдущий квест
-        if (quest.Previous == null || !quest.Previous.IsActive)
+        if (quest.Previous.QuestNumber == quest.QuestNumber || !quest.Previous.IsActive)
         {
-            // Проверяем, находятся ли игроки рядом с дверью
-            // Debug.Log(Vector3.Distance(player1.transform.position, transform.position) < openDistance);
             if ((Vector3.Distance(player1.transform.position, transform.position) < openDistance ||
                 Vector3.Distance(player2.transform.position, transform.position) < openDistance) && !quest.IsActive && !quest.IsCompleted)
             {
