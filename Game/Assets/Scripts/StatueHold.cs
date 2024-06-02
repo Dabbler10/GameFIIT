@@ -25,7 +25,7 @@ public class StatueHold : MonoBehaviour
             if (!hold)
             {
                 SoundManager.instance.PlaySound(collectStatueSound);
-                var hit = Physics2D.OverlapCircleAll(holdPoint.position, range, statueLayer).First();
+                var hit = Physics2D.OverlapCircleAll(holdPoint.position, range, statueLayer).FirstOrDefault();
                 if (hit != null && (((hit.gameObject.CompareTag("StatueHead") || hit.gameObject.CompareTag("StatueArm") || hit.gameObject.CompareTag("Torch")) && hit.gameObject.GetComponent<BoxCollider2D>().isTrigger == false)
                     || (hit.gameObject.GetComponent<BoxCollider2D>().isTrigger && hit.gameObject.CompareTag("Torch"))))
                 {

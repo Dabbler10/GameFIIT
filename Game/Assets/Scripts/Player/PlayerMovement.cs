@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
     
     private float horizontalMove = 0f;
     private bool jump;
-    private bool crouch;
+    public bool crouch;
 
     void Update()
     {
