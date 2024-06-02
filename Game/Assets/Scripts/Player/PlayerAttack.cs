@@ -35,7 +35,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Attack" + playerMovement.Number))
+        if (Input.GetButtonDown("Attack" + playerMovement.Number) && playerMovement.controller.m_Grounded)
             Attack();
     }
 

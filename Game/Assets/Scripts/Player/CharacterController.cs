@@ -14,7 +14,7 @@ public class CharacterController2D : MonoBehaviour
 	[SerializeField] private Transform anotherPlayer;
 
 	const float k_GroundedRadius = .2f;
-	private bool m_Grounded;            
+	public bool m_Grounded;            
 	const float k_CeilingRadius = .2f;
 	private Rigidbody2D m_Rigidbody2D;
 	private bool m_FacingRight = true;

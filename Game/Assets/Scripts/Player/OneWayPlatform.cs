@@ -20,7 +20,7 @@ public class OneWayPlatform : MonoBehaviour
     {
         if (Input.GetButtonDown("Crouch" + number))
             if (currentPlatform != null)
-                StartCoroutine(DisablecCollusion());
+                StartCoroutine(DisableCollusion());
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -28,6 +28,7 @@ public class OneWayPlatform : MonoBehaviour
         if (other.gameObject.CompareTag("Platform"))
         {
             currentPlatform = other.gameObject;
+            Physics2D.IgnoreCollision(currentPlatform.GetComponent<BoxCollider2D>(), playerBoxCollider);
         }
     }
 
@@ -39,13 +40,11 @@ public class OneWayPlatform : MonoBehaviour
         }
     }
 
-    private IEnumerator DisablecCollusion()
+    private IEnumerator DisableCollusion()
     {
         var platformCollider = currentPlatform.GetComponent<BoxCollider2D>();
-        Physics2D.IgnoreCollision(platformCollider, playerBoxCollider);
         Physics2D.IgnoreCollision(platformCollider, playerCircleCollider);
         yield return new WaitForSeconds(0.5f);
-        Physics2D.IgnoreCollision(platformCollider, playerBoxCollider, false);
         Physics2D.IgnoreCollision(platformCollider, playerCircleCollider, false);
     }
 }
