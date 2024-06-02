@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class BurnScript : MonoBehaviour
 {
@@ -13,7 +14,10 @@ public class BurnScript : MonoBehaviour
         if (other.gameObject.CompareTag("Torch"))
         {
             gameObject.GetComponent<PlayableDirector>().Play();
-            complete = true;
+            var playerObjects = GameObject.FindGameObjectsWithTag("Player");
+            foreach (var player in playerObjects)
+                player.SetActive(false);
+            Invoke("MakeCompleteTrue", 4.0f);
         }
     }
 
@@ -21,4 +25,16 @@ public class BurnScript : MonoBehaviour
     {
         return complete;
     }
+
+    private void LoadEndScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    private void MakeCompleteTrue()
+    {
+        complete = true;
+        Invoke("LoadEndScene", 1.0f);
+    }
+    
 }

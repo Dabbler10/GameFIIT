@@ -37,7 +37,6 @@ public class MainStatue : MonoBehaviour
                 part.gameObject.GetComponent<Rigidbody2D>().bodyType = (RigidbodyType2D)2;
                 if (!arm1)
                 {
-                    Debug.Log("aboba");
                     var o = part.gameObject;
                     o.transform.position = Arm1Point.position;
                     o.transform.rotation = Arm1Point.rotation;

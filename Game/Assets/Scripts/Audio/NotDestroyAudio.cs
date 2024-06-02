@@ -11,5 +11,4 @@ public class NotDestroyAudio : MonoBehaviour
             Destroy(this.gameObject);
         DontDestroyOnLoad(this.gameObject);
     }
-
 }
