@@ -21,6 +21,7 @@ public class Note : MonoBehaviour
     private readonly float noteDuration = 10f;
     private bool isAppearing = false;
     private float timer = 0f;
+    private static bool firstTimeShowingMovement = true;
     [SerializeField] private AudioClip noteSound;
     
 
@@ -28,7 +29,7 @@ public class Note : MonoBehaviour
     {
         if (isAppearing)
             timer += Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Return) || (isAppearing && timer > noteDuration))
+        if ((Input.GetKeyDown(KeyCode.Return) && !firstTimeShowingMovement) || (isAppearing && timer > noteDuration))
             Disappear();
     }
 
@@ -71,6 +72,7 @@ public class Note : MonoBehaviour
         Image.gameObject.SetActive(false);
         isAppearing = false;
         timer = 0f;
+        firstTimeShowingMovement = false;
     }
 
     private void MakeImageBig()
