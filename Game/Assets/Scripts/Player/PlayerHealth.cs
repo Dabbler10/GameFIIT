@@ -42,6 +42,7 @@ public class PlayerHealth : MonoBehaviour
         {
             currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
             timerTakinDamage = 0f;
+            anim.SetTrigger("damage");
         }
 
         if (currentHealth <= 0)
