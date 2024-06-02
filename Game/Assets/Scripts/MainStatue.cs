@@ -53,9 +53,9 @@ public class MainStatue : MonoBehaviour
             }
         }
     }
-    
-    private void OnDrawGizmosSelected()
+
+    public bool IsCompleted()
     {
-        Gizmos.DrawWireSphere(transform.position + Vector3.up * 1.7f, range);
+        return head && arm1 && arm2;
     }
 }

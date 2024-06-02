@@ -7,10 +7,18 @@ using UnityEngine.Playables;
 
 public class BurnScript : MonoBehaviour
 {
+    private bool complete;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Torch"))
+        {
             gameObject.GetComponent<PlayableDirector>().Play();
-        
+            complete = true;
+        }
+    }
+
+    public bool IsCompleted()
+    {
+        return complete;
     }
 }
