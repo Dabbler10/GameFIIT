@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Note : MonoBehaviour
 {
-    
     [Serializable]
     public struct SpritePair
     {
@@ -14,8 +13,8 @@ public class Note : MonoBehaviour
     }
 
     [SerializeField] public SpritePair[] sprites;
-    
-    
+
+
     public Image Image;
     public Canvas Canvas;
     private readonly float noteDuration = 10f;
@@ -23,7 +22,9 @@ public class Note : MonoBehaviour
     private float timer = 0f;
     private static bool firstTimeShowingMovement = true;
     [SerializeField] private AudioClip noteSound;
-    
+    float screenWidth = Screen.width;
+    float screenHeight = Screen.height;
+
 
     void Update()
     {
@@ -40,14 +41,14 @@ public class Note : MonoBehaviour
             AppearSmallImage();
             Image.sprite = sprites[index].sprite1;
         }
-           
+
         else
         {
             AppearBigImage();
             Image.sprite = sprites[index].sprite2;
         }
-            
-        
+
+
         Image.gameObject.SetActive(true);
     }
 
@@ -65,7 +66,7 @@ public class Note : MonoBehaviour
         isAppearing = true;
         timer = 0f;
     }
-    
+
     public void Disappear()
     {
         Canvas.GetComponent<GameState>().Resume();
@@ -77,17 +78,21 @@ public class Note : MonoBehaviour
 
     private void MakeImageBig()
     {
-        Image.transform.localScale = new Vector3(3, 3, 0);
+        Image.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        Image.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+        Image.rectTransform.pivot = new Vector2(0.5f, 0.5f);
+        Image.transform.localScale = new Vector3(7.5f, 7.5f, 0);
         Image.rectTransform.anchoredPosition = new Vector2(0, 0);
         Color currentColor = Image.color;
         Image.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1);
-        
     }
 
     private void MakeImageSmall()
     {
-        Image.transform.localScale = new Vector3(1, 1, 1);
-        Image.rectTransform.anchoredPosition = new Vector2(285,-180);
+        Image.transform.localScale = new Vector3(3, 3, 1);
+        Image.rectTransform.anchorMin = new Vector2(1, 0);
+        Image.rectTransform.anchorMax = new Vector2(1, 0);
+        Image.rectTransform.pivot = new Vector2(0.5f, 0.5f);
         Color currentColor = Image.color;
         Image.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0.7f);
     }

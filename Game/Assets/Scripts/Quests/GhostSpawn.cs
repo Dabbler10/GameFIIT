@@ -3,7 +3,7 @@ using UnityEngine;
 public class GhostSpawn: MonoBehaviour
 {
     private float spawnRadius = 7f;
-    private int maxSpawnNumber = 6;
+    private int maxSpawnNumber = 3;
     public IEnumerable<GameObject> SpawnObjects(GameObject prefabToSpawn, Vector3 centerOfSpawn)
     {
         int objectCount = Random.Range(2, maxSpawnNumber);
