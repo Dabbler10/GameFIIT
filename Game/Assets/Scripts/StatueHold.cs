@@ -15,7 +15,7 @@ public class StatueHold : MonoBehaviour
     public int number;
     [SerializeField] private AudioClip assembleStatueSound;
     [SerializeField] private AudioClip collectStatueSound;
-    
+
     void Update()
     {
         if (Input.GetButtonDown("PickUp" + number))
@@ -23,8 +23,11 @@ public class StatueHold : MonoBehaviour
             if (!hold)
             {
                 var hit = Physics2D.OverlapCircleAll(holdPoint.position, range, statueLayer).FirstOrDefault();
-                if (hit != null && (((hit.gameObject.CompareTag("StatueHead") || hit.gameObject.CompareTag("StatueArm") || hit.gameObject.CompareTag("Torch")) && hit.gameObject.GetComponent<BoxCollider2D>().isTrigger == false)
-                    || (hit.gameObject.GetComponent<BoxCollider2D>().isTrigger && hit.gameObject.CompareTag("Torch"))))
+                if (hit != null &&
+                    (((hit.gameObject.CompareTag("StatueHead") || hit.gameObject.CompareTag("StatueArm") ||
+                       hit.gameObject.CompareTag("Torch")) &&
+                      hit.gameObject.GetComponent<BoxCollider2D>().isTrigger == false)
+                     || (hit.gameObject.GetComponent<BoxCollider2D>().isTrigger && hit.gameObject.CompareTag("Torch"))))
                 {
                     SoundManager.instance.PlaySound(collectStatueSound);
                     hold = true;
@@ -38,8 +41,12 @@ public class StatueHold : MonoBehaviour
                 hold = false;
                 holdPart.GetComponent<BoxCollider2D>().isTrigger = false;
                 holdPart.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
-                holdPart.GetComponent<Rigidbody2D>().velocity =
-                    new Vector2(transform.localScale.x, 1) * throwPower;
+                if (holdPart.CompareTag("StatueArm") || holdPart.CompareTag("StatueHead"))
+                    holdPart.GetComponent<Rigidbody2D>().velocity =
+                        new Vector2(transform.localScale.x / Math.Abs(transform.localScale.x), 0);
+                else
+                    holdPart.GetComponent<Rigidbody2D>().velocity =
+                        new Vector2(transform.localScale.x, 1f) * throwPower;
             }
         }
 
@@ -47,11 +54,10 @@ public class StatueHold : MonoBehaviour
         {
             holdPart.gameObject.transform.position = holdPoint.position;
         }
-
     }
+
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(holdPoint.position, range);
     }
-    
 }
