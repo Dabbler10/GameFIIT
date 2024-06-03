@@ -81,18 +81,19 @@ public class Note : MonoBehaviour
         Image.rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
         Image.rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         Image.rectTransform.pivot = new Vector2(0.5f, 0.5f);
-        Image.transform.localScale = new Vector3(7.5f, 7.5f, 0);
         Image.rectTransform.anchoredPosition = new Vector2(0, 0);
+        Image.transform.localScale = new Vector3(7.5f, 7.5f, 0);
         Color currentColor = Image.color;
         Image.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1);
     }
 
     private void MakeImageSmall()
     {
-        Image.transform.localScale = new Vector3(3, 3, 1);
+        Image.transform.localScale = new Vector3(3, 3, 0);
         Image.rectTransform.anchorMin = new Vector2(1, 0);
         Image.rectTransform.anchorMax = new Vector2(1, 0);
         Image.rectTransform.pivot = new Vector2(0.5f, 0.5f);
+        Image.rectTransform.anchoredPosition = new Vector2(-365, 149);
         Color currentColor = Image.color;
         Image.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0.7f);
     }
